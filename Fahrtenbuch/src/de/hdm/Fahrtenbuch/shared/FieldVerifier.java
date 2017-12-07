@@ -21,7 +21,6 @@ package de.hdm.Fahrtenbuch.shared;
  * </p>
  */
 public class FieldVerifier {
-
 	/**
 	 * Verifies that the specified name is valid for our service.
 	 * 

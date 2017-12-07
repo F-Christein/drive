@@ -1,27 +1,77 @@
 /** Add css rules here for your application. */
 
-
 /** Example rules used by the template application (remove for your app) */
+
+body {
+
+}
+
 h1 {
   font-size: 2em;
-  font-weight: bold;
   color: #777777;
-  margin: 40px 0px 70px;
+  font: 'Gotham';
+  font-weight: lighter !important;
+  font-variant: small-caps;
+  margin: 40.0px 0.0px 0.0px;
   text-align: center;
 }
 
+.rot{
+	color: red;	
+}
+
+
+.green{
+	color: ForestGreen;	
+	background-color: lightgreen;
+	letter-spacing: 2px;
+}
+
+
+.linked{
+	
+	background-color: lightgreen;
+	
+	letter-spacing: 2px;
+}
+
+.not-linked{
+	background-color: #F0F0F0;
+	
+	
+}
+
+.heading{
+	font-size: 1em;
+	font: 'Gotham';
+  	font-weight: lighter !important;
+  	font-variant: small-caps;
+  	letter-spacing: 5px;
+	
+}
+.h2heading{
+	font: 'Gotham';
+    font-weight: lighter !important;
+    font-variant: small-caps;
+    letter-spacing: 8px;
+}
+
+
 .sendButton {
   display: block;
-  font-size: 16pt;
+  font-size: 16.0pt;
+  
 }
 
 /** Most GWT widgets already have a style name defined */
 .gwt-DialogBox {
-  width: 400px;
+ 
+  
 }
 
+
 .dialogVPanel {
-  margin: 5px;
+  margin: 5.0px;
 }
 
 .serverResponseLabelError {
@@ -30,5 +80,64 @@ h1 {
 
 /** Set ids using widget.getElement().setId("idOfElement") */
 #closeButton {
-  margin: 15px 6px 6px;
+  margin: 15.0px 6.0px 6.0px;
+}
+
+
+#heading{
+	margin-top: 70px;
+	font-size: 1em;
+	font: 'Gotham';
+  	font-weight: lighter !important;
+  	font-variant: small-caps;
+  	letter-spacing: 5px;
+	
+}
+
+
+#header {
+    background-color:black;
+    color:white;
+    font: 'Gotham';
+    font-weight: lighter !important;
+    font-variant: small-caps;
+    letter-spacing: 18px;
+    text-shadow: 0 0 5px rgba(255,255,255,0.5);
+    text-align:center;
+    padding:2px;
+    height:120px;
+    width:auto;
+    webkit-font-smoothing: antialiased;
+}
+#nav {
+    line-height:30px;
+    background-color:#eeeeee;
+    height:750px;
+    width:20%;
+    float:left;
+    padding:5px;	      
+}
+#contentHeader{
+	font: 'Gotham';
+    font-weight: lighter !important;
+    font-variant: small-caps;
+    letter-spacing: 8px;
+}
+#content {
+    width:77%;
+    min-height:500px;
+    float:left;
+    padding-left:10px;	
+}
+#footer {
+    background-color:black;
+    color:white;
+    font: 'Gotham';
+    font-weight: lighter !important;
+    font-variant: small-caps;
+    letter-spacing: 10px;
+    text-shadow: 0 0 5px rgba(255,255,255,0.5);
+    clear:both;
+    text-align:center;
+   padding:5px;	 	 
 }

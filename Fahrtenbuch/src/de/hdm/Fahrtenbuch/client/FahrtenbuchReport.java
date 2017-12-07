@@ -2,11 +2,7 @@ package de.hdm.Fahrtenbuch.client;
 
 import com.google.gwt.core.client.EntryPoint;
 
-
-/**
- * Entry point classes define <code>onModuleLoad()</code>.
- */
-public class Fahrtenbuch implements EntryPoint {
+public class FahrtenbuchReport implements EntryPoint{
 
 	@Override
 	public void onModuleLoad() {
