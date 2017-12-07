@@ -15,3 +15,5 @@ public class Fahrtenbuch implements EntryPoint {
 	}
 
 }
+
+//Test
