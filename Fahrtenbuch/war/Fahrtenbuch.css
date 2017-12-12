@@ -96,7 +96,7 @@ h1 {
 
 
 #header {
-    background-color:black;
+    background-color:#0432ff;
     color:white;
     font: 'Gotham';
     font-weight: lighter !important;
@@ -130,7 +130,7 @@ h1 {
     padding-left:10px;	
 }
 #footer {
-    background-color:black;
+    background-color:blue;
     color:white;
     font: 'Gotham';
     font-weight: lighter !important;

@@ -22,7 +22,7 @@ public class DBConnection {
 					//Code anderes Projekt: 	                    
 					//con = DriverManager.getConnection("jdbc:google:mysql://project4u-165512:hdm-project4u/project4u?user=root");
 	
-					con = DriverManager.getConnection("jdbc:google:mysql://     ????????    ?user=root");
+					con = DriverManager.getConnection("jdbc:google:mysql://fahrtenbuch-187414:fahrtenbuch/Fahrtenbuch?user=root");
 
 				} else {
 
