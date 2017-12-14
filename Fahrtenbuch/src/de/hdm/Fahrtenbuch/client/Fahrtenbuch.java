@@ -27,7 +27,7 @@ public class Fahrtenbuch implements EntryPoint {
 
 	static final int REFRESH_INTERVAL = 5000; // ms
 
-	public static final NavigationsleisteWidget nt = new NavigationsleisteWidget();
+	public static final Navigationsleiste nt = new Navigationsleiste();
 
 	private LoginInfo loginInfo = null;
 	private VerticalPanel loginPanel = new VerticalPanel();
