@@ -12,9 +12,9 @@ import de.hdm.Fahrtenbuch.client.ClientsideSettings;
 import de.hdm.Fahrtenbuch.shared.LoginInfo;
 import de.hdm.Fahrtenbuch.shared.LoginService;
 import de.hdm.Fahrtenbuch.shared.LoginServiceAsync;
+import de.hdm.Fahrtenbuch.client.gui.Navigationsleiste;
 import de.hdm.Fahrtenbuch.client.gui.MessageBox;
 import de.hdm.Fahrtenbuch.shared.FahrtenbuchAdministrationAsync;
-
 
 /**
  * Entry point classes define <code>onModuleLoad()</code>.
@@ -23,71 +23,68 @@ public class Fahrtenbuch implements EntryPoint {
 
 	FahrtenbuchAdministrationAsync FahrtenbuchVerwaltung = ClientsideSettings.getFahrtenbuchVerwaltung();
 
-	
 	private static String editorHtmlName = "Project4u.html";
 
 	static final int REFRESH_INTERVAL = 5000; // ms
-	
-    private LoginInfo loginInfo = null;
-    private VerticalPanel loginPanel = new VerticalPanel();
-    private Label loginLabel = new Label("Bitte einloggen um auf die Project4u-Plattform zugreifen zu können");
-    private Anchor signInLink = new Anchor("Sign In");
-    private Anchor signOutLink = new Anchor("Sign Out");
 
+	public static final NavigationsleisteWidget nt = new NavigationsleisteWidget();
 
-public void onModuleLoad() {
-	// Check login status using login service.
+	private LoginInfo loginInfo = null;
+	private VerticalPanel loginPanel = new VerticalPanel();
+	private Label loginLabel = new Label("Bitte einloggen um auf die Project4u-Plattform zugreifen zu können");
+	private Anchor signInLink = new Anchor("Sign In");
 
-	LoginServiceAsync loginService = GWT.create(LoginService.class);
-	loginService.login(GWT.getHostPageBaseURL() + editorHtmlName, new AsyncCallback<LoginInfo>() {
-		public void onFailure(Throwable error) {
-		}
+	public void onModuleLoad() {
+		// Check login status using login service.
 
-	  public void onSuccess(LoginInfo result) {
-	  loginInfo = result;
-	  ClientsideSettings.setAktuellerUser(result);
-	  if(loginInfo.isLoggedIn()) {
-	  loadFahrtenbuch();
-	  newUserCheck(result);
-	  } else {
-	  loadLogin();
-	  }
-	  }
+		LoginServiceAsync loginService = GWT.create(LoginService.class);
+		loginService.login(GWT.getHostPageBaseURL() + editorHtmlName, new AsyncCallback<LoginInfo>() {
+			public void onFailure(Throwable error) {
+			}
 
-	private void loadFahrtenbuch() {
-		// TODO Auto-generated method stub
-		
+			public void onSuccess(LoginInfo result) {
+				loginInfo = result;
+				ClientsideSettings.setAktuellerUser(result);
+				if (loginInfo.isLoggedIn()) {
+					loadFahrtenbuch();
+					newUserCheck(result);
+				} else {
+					loadLogin();
+				}
+			}
+
+			private void loadFahrtenbuch() {
+				// TODO Auto-generated method stub
+
+			}
+		});
 	}
-	  });
-	  }
 
-
-  
-  private void loadLogin() {
+	private void loadLogin() {
 		// Assemble login panel.
 		signInLink.setHref(loginInfo.getLoginUrl());
 		loginPanel.add(loginLabel);
 		loginPanel.add(signInLink);
 		RootPanel.get("content").add(loginPanel);
-  }
-	
+	}
 
-private void newUserCheck(LoginInfo log){
-	FahrtenbuchVerwaltung.checkStatus(log, new AsyncCallback<Boolean>() {
-		public void onSuccess(Boolean result) {
-			if(!result){
-				nt.setButtonsUnenabled();
-				
-				MessageBox.alertWidget("Nutzerkonto", "Sie haben noch kein Profil, bitte legen Sie eines an");
-				RootPanel.get("content").clear();
-				RootPanel.get("content").add(new PartnerprofilWidget());
-			}				
-		}				
-		public void onFailure(Throwable caught) {								
-		}
-	});
+	private void newUserCheck(LoginInfo log) {
+		FahrtenbuchVerwaltung.checkStatus(log, new AsyncCallback<Boolean>() {
+			public void onSuccess(Boolean result) {
+				if (!result) {
+					nt.setButtonsUnenabled();
+
+					MessageBox.alertWidget("Nutzerkonto", "Sie haben noch kein Profil, bitte legen Sie eines an");
+					RootPanel.get("content").clear();
+					RootPanel.get("content").add(new PartnerprofilWidget());
+				}
+			}
+
+			public void onFailure(Throwable caught) {
+			}
+		});
+	}
+
 }
 
-}
-
-//Test
+// Test
