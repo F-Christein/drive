@@ -1,7 +1,9 @@
 package de.hdm.Fahrtenbuch.client.gui;
 
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
@@ -13,40 +15,36 @@ import de.hdm.Fahrtenbuch.client.ClientsideSettings;
 import de.hdm.Fahrtenbuch.shared.FahrtenbuchAdministrationAsync;
 import de.hdm.Fahrtenbuch.client.gui.Startseite;
 
-public class Navigationsleiste extends Composite{
-	
+public class Navigationsleiste extends Composite {
+
 	FahrtenbuchAdministrationAsync FahrtenbuchVerwaltung = ClientsideSettings.getFahrtenbuchVerwaltung();
-	
-	
-	
+
 	private Anchor reportLink = new Anchor("ReportGenerator");
 	private Anchor signOutLink = new Anchor();
-	
+
 	private VerticalPanel menuPanel = new VerticalPanel();
 
 	private Button homeButton = new Button("Startseite");
 	private Button logout = new Button("Logout");
 	private Button reportButton = new Button("Reports");
 	private Button fahrtenbuchButton = new Button("Fahrtenbuecher");
-	
 
-	public Navigationsleiste(){
-		
+	public Navigationsleiste() {
+
 		menuPanel.add(homeButton);
 		menuPanel.add(reportButton);
 		menuPanel.add(fahrtenbuchButton);
 		menuPanel.add(logout);
-		
+
 		// Abstand zwischen den einzelnen Buttons
 		menuPanel.setSpacing(20);
-		
+
 		// Layout Button
 		homeButton.setPixelSize(200, 40);
 		reportButton.setPixelSize(200, 40);
 		fahrtenbuchButton.setPixelSize(200, 40);
 		logout.setPixelSize(200, 40);
-		
-		
+
 		homeButton.addClickHandler(new ClickHandler() {
 
 			@Override
@@ -60,8 +58,64 @@ public class Navigationsleiste extends Composite{
 				RootPanel.get("content").add(new Startseite());
 			}
 		});
+
+		
+		//TODO: Mit Klick auf diesen Button sollen alle Fahrtenbücher kommen
+				
+		fahrtenbuchButton.addClickHandler(new ClickHandler(){
+
+			@Override
+			public void onClick(ClickEvent event) {
+				// TODO Auto-generated method stub
+				
+			}
+					
+		});
 		
 		
+		reportButton.addClickHandler(new ClickHandler(){
+			
+			@Override
+			public void onClick(ClickEvent event){
+				reportLink.setHref(GWT.getHostPageBaseURL()+"FahrtenbuchReport.html");
+				Window.open(reportLink.getHref(), "_self", "");
+			}
+			
+		});
+		
+		
+		logout.addClickHandler(new ClickHandler(){
+			
+			@Override
+			public void onClick(ClickEvent event){
+				ClientsideSettings.setAktuellerUser(null);
+				signOutLink.setHref(ClientsideSettings.getAktuellerUser().getLogoutUrl());
+				Window.Location.assign(signOutLink.getHref());
+			}
+		});
+		
+		
+		
+		initWidget(menuPanel);
 	}
-	
+
+	public void homeButtonClick() {
+		homeButton.click();
+
+	}
+
+	public void setButtonsEnabled() {
+		homeButton.setEnabled(true);
+		logout.setEnabled(true);
+		reportButton.setEnabled(true);
+		fahrtenbuchButton.setEnabled(true);
+	}
+
+	public void setButtonsUnabled() {
+		homeButton.setEnabled(false);
+		logout.setEnabled(false);
+		reportButton.setEnabled(false);
+		fahrtenbuchButton.setEnabled(false);
+	}
+
 }
